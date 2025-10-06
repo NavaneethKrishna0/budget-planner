@@ -1,0 +1,177 @@
+/* Main container and heading */
+.dashboard-container {
+    padding: 20px 40px;
+    background-color: #f4f7fa;
+    font-family: 'Inter', sans-serif;
+}
+
+.dashboard-container h1 {
+    font-size: 2rem;
+    color: #1a202c;
+    margin-bottom: 20px;
+}
+
+/* Grid layout for the dashboard */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    gap: 20px;
+    grid-template-areas:
+        "income expenses balance balance"
+        "chart chart activity goals"
+        "chart chart activity goals";
+}
+
+/* Base card styling */
+.dashboard-grid > div {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+.dashboard-grid > div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.dashboard-grid h3 {
+    margin-top: 0;
+    color: #4a5568;
+    font-size: 1.1rem;
+}
+
+/* Summary Cards */
+.summary-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.summary-card .card-icon {
+    padding: 12px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.summary-card .card-icon svg {
+    width: 28px;
+    height: 28px;
+}
+.summary-card .card-content p {
+    margin: 0;
+    color: #718096;
+    font-size: 0.9rem;
+}
+.summary-card .card-content h3 {
+    margin: 0;
+    font-size: 1.75rem;
+}
+
+/* Specific card colors */
+.card-income { grid-area: income; }
+.card-income .card-icon { background-color: #e6fffa; }
+.card-income .card-icon svg { color: #28a745; }
+.card-income .card-content h3 { color: #28a745; }
+
+.card-expenses { grid-area: expenses; }
+.card-expenses .card-icon { background-color: #fff5f5; }
+.card-expenses .card-icon svg { color: #dc3545; }
+.card-expenses .card-content h3 { color: #dc3545; }
+
+.card-balance { grid-area: balance; }
+.card-balance .card-icon { background-color: #ebf4ff; }
+.card-balance .card-icon svg { color: #007bff; }
+.card-balance .card-content h3 { color: #007bff; }
+
+/* Main Chart Area */
+.main-chart {
+    grid-area: chart;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.doughnut-wrapper {
+    position: relative;
+    width: 250px;
+    height: 250px;
+}
+.chart-center-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #4a5568;
+}
+.chart-center-text span {
+    font-size: 1rem;
+    color: #718096;
+}
+.chart-center-text strong {
+    display: block;
+    font-size: 1.5rem;
+    color: #1a202c;
+}
+
+/* Recent Activity List */
+.recent-activity { grid-area: activity; }
+.recent-activity ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 300px;
+    overflow-y: auto;
+}
+.recent-activity li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #edf2f7;
+}
+.recent-activity li:last-child { border-bottom: none; }
+.transaction-details strong {
+    display: block;
+    color: #2d3748;
+}
+.transaction-details span {
+    font-size: 0.85rem;
+    color: #a0aec0;
+}
+.transaction-amount { font-weight: bold; }
+.income .transaction-amount { color: #28a745; }
+.expense .transaction-amount { color: #dc3545; }
+
+/* Goals Overview */
+.goals-overview { grid-area: goals; }
+.goal-content strong {
+    color: #2d3748;
+    font-size: 1.1rem;
+}
+.goal-content p {
+    color: #718096;
+    margin: 5px 0 15px;
+}
+.progress-bar-container {
+    width: 100%;
+    background-color: #e2e8f0;
+    border-radius: 10px;
+    height: 10px;
+    overflow: hidden;
+}
+.progress-bar {
+    height: 100%;
+    background-color: #4299e1;
+    border-radius: 10px;
+    transition: width 0.5s ease-in-out;
+}
+.goal-content span {
+    display: block;
+    text-align: right;
+    font-size: 0.8rem;
+    color: #718096;
+    margin-top: 5px;
+}
