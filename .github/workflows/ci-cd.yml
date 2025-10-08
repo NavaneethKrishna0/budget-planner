@@ -58,7 +58,11 @@ jobs:
           git pull
           sudo docker-compose pull
 <<<<<<< HEAD
+<<<<<<< HEAD
           sudo docker-compose up -d 
 =======
           sudo docker-compose up -d --build
 >>>>>>> 8c71c57d448821335a0f5c6c8bcda824689660d8
+=======
+          sudo docker-compose up -d 
+>>>>>>> 5ffe3f8b7bc78096ae3a50b93456d3d88516900c
