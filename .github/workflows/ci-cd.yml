@@ -20,6 +20,9 @@ jobs:
 
     - name: Build Spring Boot backend
       run: mvn -f budget-planner/pom.xml clean package -DskipTests
+      
+    - name: List contents of target folder
+      run: ls -l budget-planner/target
 
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
@@ -56,7 +59,5 @@ jobs:
         script: |
           cd /home/ubuntu/budget-planner
           git pull
-          cd budget-planner
-          mvn clean package -DskipTests
-          cd ..
-          sudo docker-compose up -d --build
+          sudo docker-compose pull
+          sudo docker-compose up -d

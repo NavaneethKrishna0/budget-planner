@@ -16,7 +16,7 @@ services:
       - db-data:/var/lib/mysql
 
   backend:
-    build: ./budget-planner
+    image: DOCKERHUB_USERNAME/budget-backend:latest   # 👈 changed line
     container_name: budget-backend
     restart: always
     depends_on:
@@ -29,7 +29,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: password
 
   frontend:
-    build: ./budget-planner-frontend
+    image: DOCKERHUB_USERNAME/budget-frontend:latest   # 👈 changed line
     container_name: budget-frontend
     restart: always
     depends_on:
