@@ -50,9 +50,9 @@ jobs:
     - name: Deploy to EC2
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.EC_HOST }}
-        username: ${{ secrets.EC_USERNAME }}
-        key: ${{ secrets.EC_KEY }}
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USERNAME }}
+        key: ${{ secrets.EC2_KEY }}
         script: |
           cd /home/ubuntu/budget-planner
           git pull
