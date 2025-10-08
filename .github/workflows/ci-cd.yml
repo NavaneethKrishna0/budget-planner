@@ -56,7 +56,6 @@ jobs:
         script: |
           cd /home/ubuntu/budget-planner
           git pull
-          cd budget-planner
-          mvn clean package -DskipTests
-          cd ..
-          sudo docker-compose up -d --build
+          sudo docker-compose pull
+          sudo docker-compose up -d
+
