@@ -57,4 +57,8 @@ jobs:
           cd /home/ubuntu/budget-planner # <-- UPDATE THIS LINE
           git pull
           sudo docker-compose pull
+<<<<<<< HEAD
           sudo docker-compose up -d 
+=======
+          sudo docker-compose up -d --build
+>>>>>>> 8c71c57d448821335a0f5c6c8bcda824689660d8
