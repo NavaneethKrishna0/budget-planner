@@ -6,7 +6,8 @@ import './DashboardPage.css';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const API_BASE_URL = 'http://localhost:8081/api';
+// Use the environment variable for the production URL, with a fallback for local development
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8081/api';
 
 const DashboardPage = () => {
     const [summary, setSummary] = useState({ totalIncome: 0, totalExpenses: 0, balance: 0 });

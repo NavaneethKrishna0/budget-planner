@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './GoalsPage.css';
 
-const API_URL = 'http://localhost:8081/api/goals';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8081/api';
 
 const GoalsPage = () => {
     const [goals, setGoals] = useState([]);
@@ -14,13 +14,13 @@ const GoalsPage = () => {
     }, []);
 
     const fetchGoals = () => {
-        axios.get(API_URL).then(res => setGoals(res.data));
+        axios.get(`${API_BASE_URL}/goals`).then(res => setGoals(res.data));
     };
 
     const handleAddGoal = (e) => {
         e.preventDefault();
         const newGoal = { name, targetAmount: parseFloat(targetAmount), currentAmount: 0 };
-        axios.post(API_URL, newGoal).then(() => {
+        axios.post(`${API_BASE_URL}/goals`, newGoal).then(() => {
             fetchGoals();
             setName('');
             setTargetAmount('');
@@ -32,7 +32,7 @@ const GoalsPage = () => {
         if (amountStr) {
             const amount = parseFloat(amountStr);
             if (!isNaN(amount) && amount > 0) {
-                axios.post(`${API_URL}/${goalId}/contribute`, { amount })
+                axios.post(`${API_BASE_URL}/goals/${goalId}/contribute`, { amount })
                     .then(() => {
                         fetchGoals(); // Refresh goals to show new progress
                     })

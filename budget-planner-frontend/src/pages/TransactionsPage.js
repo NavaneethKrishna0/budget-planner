@@ -3,7 +3,7 @@ import TransactionForm from '../components/TransactionForm';
 import axios from 'axios';
 import './TransactionsPage.css'; // For styling the list
 
-const API_URL = 'http://localhost:8081/api/transactions';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8081/api';
 
 const TransactionsPage = () => {
     const [transactions, setTransactions] = useState([]);
@@ -15,7 +15,7 @@ const TransactionsPage = () => {
 
     const fetchTransactions = async () => {
         try {
-            const response = await axios.get(API_URL);
+            const response = await axios.get(`${API_BASE_URL}/transactions`);
             setTransactions(response.data);
             setError('');
         } catch (error) {
@@ -26,7 +26,7 @@ const TransactionsPage = () => {
 
     const handleAddTransaction = async (transaction) => {
         try {
-            await axios.post(API_URL, transaction);
+            await axios.post(`${API_BASE_URL}/transactions`, transaction);
             fetchTransactions(); // Refresh the list after adding
         } catch (error) {
             console.error("Error adding transaction:", error);

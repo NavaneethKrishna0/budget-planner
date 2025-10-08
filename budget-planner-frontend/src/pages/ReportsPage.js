@@ -6,7 +6,7 @@ import './ReportsPage.css';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, PointElement, Title, Tooltip, Legend);
 
-const API_URL = 'http://localhost:8081/api/transactions';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8081/api';
 
 const ReportsPage = () => {
     const [allTransactions, setAllTransactions] = useState([]);
@@ -20,7 +20,7 @@ const ReportsPage = () => {
 
     // Fetch all transactions once on component mount
     useEffect(() => {
-        axios.get(API_URL)
+        axios.get(`${API_BASE_URL}/transactions`)
             .then(response => {
                 setAllTransactions(response.data);
             })
