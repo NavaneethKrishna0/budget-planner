@@ -6,41 +6,19 @@ services:
     container_name: budget-db
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: your_root_password
+      MYSQL_ROOT_PASSWORD: my_secret_root_password_123
       MYSQL_DATABASE: budget_db
-      MYSQL_USER: root
-      MYSQL_PASSWORD: navaneeth
+      MYSQL_USER: budget_user
+      MYSQL_PASSWORD: my_secure_app_password_456
     ports:
-      - "3307Scenario7
-
-You are a Full-Stack Engineer in charge of deploying the Hospital Management System for a university healthcare portal. The project has two parts:
-
-·         Backend (API): Spring Boot application that exposes /auth/signup and /auth/login are endpoints. Uses MySQL database and runs on localhost:8081. 
-
-Backend url: https://github.com/suneethabulla/hospital-backend.git
-
-·         Frontend: React (Vite) application that consumes these endpoints and displays Login and Signup pages. Dashboard page showing hospital modules (Doctors, Patients, Appointments) and runs on localhost:5173.
-
-Frontend url: https://github.com/suneethabulla/hospital-frontend.git
-
-Your task is to download, run, and deploy the system following CI/CD best practices.
-
-1.      Clone the GitHub repository of the Hospital Management System onto your local machine. Execute locally and verify your frontend successful login and signup functionality by interacting with the backend API at http://localhost:8081
-
- 
-
-2.      Backend Deployment via Docker without Volume
-
- 
-
-Output verification: http://localhost:8080/auth/signup?username=testuser&email=testuser@gmail.com&password=admin123
-
-:3306"
+      # This fixes the syntax error. It maps your host port 3306 to the container's port 3306.
+      - "3306:3306"
     volumes:
       - db-data:/var/lib/mysql
 
   backend:
-    image: navaneethkrishna9/budget-backend:latest   # 👈 changed line
+    # We use the image from Docker Hub, not 'build'
+    image: navaneethkrishna9/budget-backend:latest
     container_name: budget-backend
     restart: always
     depends_on:
@@ -48,12 +26,14 @@ Output verification: http://localhost:8080/auth/signup?username=testuser&email=t
     ports:
       - "8081:8081"
     environment:
+      # These values MUST match the 'db' service environment
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/budget_db
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: navaneeth
+      SPRING_DATASOURCE_USERNAME: budget_user
+      SPRING_DATASOURCE_PASSWORD: my_secure_app_password_456
 
   frontend:
-    image: navaneethkrishna9/budget-frontend:latest   # 👈 changed line
+    # We use the image from Docker Hub, not 'build'
+    image: navaneethkrishna9/budget-frontend:latest
     container_name: budget-frontend
     restart: always
     depends_on:
